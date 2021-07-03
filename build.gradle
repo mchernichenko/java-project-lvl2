@@ -1,5 +1,7 @@
 plugins {
+    //
     id 'application'
+    // проверка наличия новых версий библиотек и плагинов используемых в проекте ./gradlew dependencyUpdates
     id 'com.github.ben-manes.versions' version '0.38.0'
 }
 
@@ -13,6 +15,11 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
     implementation 'com.google.guava:guava:30.1-jre'
+}
+
+// целевая версия Java под которую компилируется проект
+compileJava {
+    options.release = 16
 }
 
 application {
