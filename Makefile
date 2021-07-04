@@ -1,3 +1,10 @@
+setup:
+	./gradlew wrapper --gradle-version 7.1
+
+
+clean:
+	./gradlew clean
+
 install:
 	./gradlew clean install
 
