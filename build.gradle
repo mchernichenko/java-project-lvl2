@@ -37,11 +37,28 @@ application {
 
 tasks.named('test') {
     useJUnitPlatform()
-    finalizedBy jacocoTestReport
+    finalizedBy jacocoTestReport // report is always generated after tests run
 }
 
 jacocoTestReport {
-    dependsOn test
+    dependsOn test // tests are required to run before generating the report
+    reports {
+        xml {
+            enabled true // coveralls plugin depends on xml format report
+        }
+
+        html {
+            enabled true
+        }
+    }
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: ['hexlet/code/App.class'
+                    ]
+            )
+        }))
+    }
 }
 
 checkstyle {
@@ -50,4 +67,8 @@ checkstyle {
 
 testlogger {
     showStandardStreams = true
+}
+
+jacoco {
+    toolVersion = "0.8.6"
 }
