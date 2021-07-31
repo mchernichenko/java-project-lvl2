@@ -44,6 +44,7 @@ public class Differ {
                         .append(data1.get(key.getKey())).append("\n")
                         .append(INDENT).append("+ ").append(key.getKey()).append(": ")
                         .append(data2.get(key.getKey())).append("\n");
+                default -> System.out.println("ups");
             }
         }
         return result.append("}").toString();
