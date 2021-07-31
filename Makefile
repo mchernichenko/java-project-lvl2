@@ -24,3 +24,6 @@ lint:
 
 build:
 	./gradlew build
+
+reports:
+	./gradlew test jacocoTestReport
