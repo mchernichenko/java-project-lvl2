@@ -11,7 +11,7 @@ test:
 	./gradlew test
 
 run:
-	./build/install/app/bin/app build/resources/main/file1.json build/resources/main/file2.json
+	./build/install/app/bin/app build/resources/main/fixtures/file1.json build/resources/main/fixtures/file2.json
 
 runh:
 	./build/install/app/bin/app -h
@@ -24,7 +24,3 @@ lint:
 
 build:
 	./gradlew build
-
-reports:
-	./gradlew test
-	./gradlew jacocoTestReport
