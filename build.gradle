@@ -47,7 +47,7 @@ tasks.named('test') {
 
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
-    /*reports {
+    reports {
         xml {
             enabled true // coveralls plugin depends on xml format report
         }
@@ -63,7 +63,7 @@ jacocoTestReport {
                     ]
             )
         }))
-    }*/
+    }
 }
 
 checkstyle {
