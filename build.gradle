@@ -17,12 +17,17 @@ repositories {
 }
 
 dependencies {
+    // test
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
    // testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.0-M1'
    // testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.0-M1'
     testImplementation 'org.assertj:assertj-core:3.19.0'
+
+    // picocli
     implementation 'info.picocli:picocli:4.6.1'
     annotationProcessor 'info.picocli:picocli-codegen:4.6.1'
+
+    // json
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
 }
 
@@ -42,7 +47,7 @@ tasks.named('test') {
 
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
-    reports {
+    /*reports {
         xml {
             enabled true // coveralls plugin depends on xml format report
         }
@@ -58,7 +63,7 @@ jacocoTestReport {
                     ]
             )
         }))
-    }
+    }*/
 }
 
 checkstyle {

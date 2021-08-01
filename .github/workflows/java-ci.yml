@@ -20,7 +20,7 @@ jobs:
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
       - name: Install with Gradle
-        run: make build
+        run: make install
 
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v2.7.5
@@ -31,4 +31,4 @@ jobs:
         with:
           # The report file must be there, otherwise Code Climate won't find it
           coverageCommand: make reports
-          coverageLocations: build/reports/jacoco/test/jacocoTestReport.xml:jacoco
+          coverageLocations: ${{github.workspace}}/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
