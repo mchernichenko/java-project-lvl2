@@ -47,23 +47,6 @@ tasks.named('test') {
 
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
-    reports {
-        xml {
-            enabled true // coveralls plugin depends on xml format report
-        }
-
-        html {
-            enabled true
-        }
-    }
-    afterEvaluate {
-        classDirectories.setFrom(files(classDirectories.files.collect {
-            fileTree(dir: it,
-                    exclude: ['hexlet/code/App.class'
-                    ]
-            )
-        }))
-    }
 }
 
 checkstyle {
