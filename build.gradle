@@ -27,8 +27,9 @@ dependencies {
     implementation 'info.picocli:picocli:4.6.1'
     annotationProcessor 'info.picocli:picocli-codegen:4.6.1'
 
-    // json
+    // json+yml
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.4'
 }
 
 // целевая версия Java под которую компилируется проект

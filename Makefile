@@ -11,7 +11,7 @@ test:
 	./gradlew test
 
 run:
-	./build/install/app/bin/app build/resources/main/fixtures/file1.json build/resources/main/fixtures/file2.json
+	./build/install/app/bin/app build/resources/main/fixtures/file11.json build/resources/main/fixtures/file12.json -f stylish
 
 runh:
 	./build/install/app/bin/app -h
@@ -24,3 +24,6 @@ lint:
 
 build:
 	./gradlew build
+
+#./build/install/app/bin/app build/resources/main/fixtures/file1.yml build/resources/main/fixtures/file2.yml -f yml
+#./build/install/app/bin/app build/resources/main/fixtures/file1.json build/resources/main/fixtures/file2.json -f json

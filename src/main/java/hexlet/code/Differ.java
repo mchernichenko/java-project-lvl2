@@ -1,13 +1,21 @@
 package hexlet.code;
 
+import java.io.IOException;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class Differ {
-    public static final String INDENT = "  ";
-    public static String generate(Map<String, Object> data1, Map<String, Object> data2) {
+    public static String generate(String filePath1, String filePath2, String format) throws IOException {
+        Map<String, Object> dataFile1 = Parser.parser(filePath1);
+        Map<String, Object> dataFile2 = Parser.parser(filePath2);
+        Map<String, String> mapDiff = genDiff(dataFile1, dataFile2);
+        return Formatter.format(mapDiff, dataFile1, dataFile2, format);
+    }
+
+    private static Map<String,String> genDiff(Map<String, Object> data1, Map<String, Object> data2) {
         Set<String> intersectKeys = data1.keySet().stream()
                 .filter(data2::containsKey)
                 .collect(Collectors.toSet());
@@ -24,29 +32,12 @@ public class Differ {
         diffMap.putAll(delMap);
 
         for (String key : intersectKeys) {
-            if (data1.get(key).equals(data2.get(key))) {
+            if (Objects.equals(data1.get(key), data2.get(key))) {
                 diffMap.put(key, "unchanged");
             } else {
                 diffMap.put(key, "changed");
             }
         }
-
-        StringBuilder result = new StringBuilder("{\n");
-        for (Map.Entry<String, String> key : diffMap.entrySet()) {
-            switch (key.getValue()) {
-                case "added" -> result.append(INDENT).append("+ ").append(key.getKey()).append(": ")
-                        .append(data2.get(key.getKey())).append("\n");
-                case "deleted" -> result.append(INDENT).append("- ").append(key.getKey()).append(": ")
-                        .append(data1.get(key.getKey())).append("\n");
-                case "unchanged" -> result.append(INDENT).append("  ").append(key.getKey()).append(": ")
-                        .append(data1.get(key.getKey())).append("\n");
-                case "changed" -> result.append(INDENT).append("- ").append(key.getKey()).append(": ")
-                        .append(data1.get(key.getKey())).append("\n")
-                        .append(INDENT).append("+ ").append(key.getKey()).append(": ")
-                        .append(data2.get(key.getKey())).append("\n");
-                default -> System.out.println("ups");
-            }
-        }
-        return result.append("}").toString();
+        return diffMap;
     }
 }

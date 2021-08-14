@@ -16,12 +16,14 @@ import static picocli.CommandLine.Parameters;
 public class App implements Callable<String> {
 
     @Parameters(description = "path to first file", paramLabel = "filepath1")
-    private Path filePath1;
+    private String filePath1;
 
     @Parameters(description = "path to second file", paramLabel = "filepath2")
-    private Path filePath2;
+    private String filePath2;
 
-    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
+    @Option(names = {"-f", "--format"},
+            defaultValue = "stylish",
+            description = "output format [default: ${DEFAULT-VALUE}]")
     private String format;
 
     /**
@@ -31,17 +33,12 @@ public class App implements Callable<String> {
      */
     @Override
     public String call() throws Exception { // your business logic goes here...
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String, Object> json1 = mapper.readValue(filePath1.toFile(), new TypeReference<>() {
-        });
-        Map<String, Object> json2 = mapper.readValue(filePath2.toFile(), new TypeReference<>() {
-        });
-        return Differ.generate(json1, json2);
+        return Differ.generate(filePath1, filePath2, format);
     }
 
     public static void main(String[] args) {
         CommandLine cmd = new CommandLine(new App());
-        cmd.execute(args);
+        cmd.execute(args);  // здесь вызов метода call на объекте App
         String result = cmd.getExecutionResult();
         System.out.println(result);
     }

@@ -1,52 +1,43 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DifferTest {
 
-    private static Map<String, Object> data1;
-    private static Map<String, Object> data2;
-    private static final ObjectMapper MAPPER = new ObjectMapper();
-
-    private static Path getFixturePath(String fileName) {
-        return Paths.get("src", "test", "resources", "fixtures", fileName)
-                .toAbsolutePath().normalize();
-    }
-
-    private static Map<String, Object> readFixture(String fileName) throws Exception {
-        Path filePath = getFixturePath(fileName);
-        return MAPPER.readValue(filePath.toFile(), new TypeReference<>() {
-        });
-    }
-
-    @BeforeAll
-    public static void beforeAll() throws Exception {
-        data1 = readFixture("file1.json");
-        data2 = readFixture("file2.json");
+    private static String getExpected(String pathFile) throws FileNotFoundException {
+        Path path = Paths.get(pathFile).toAbsolutePath().normalize();
+        return new BufferedReader(new FileReader(path.toFile()))
+                .lines()
+                .collect(Collectors.joining("\n"));
     }
 
     @Test
-    void testGenerate() {
-        String expected = """
-                {
-                  - follow: false
-                    host: hexlet.io
-                  - proxy: 123.234.53.22
-                  - timeout: 50
-                  + timeout: 20
-                  + verbose: true
-                }""";
+    void testGenerateJsonDiff() throws Exception {
+        String pathFile1 = "src/test/resources/fixtures/file11.json";
+        String pathFile2 = "src/test/resources/fixtures/file12.json";
+        String pathExpectedFile = "src/test/resources/expected/stylish_file_11_12.txt";
 
-        String actual = Differ.generate(data1, data2);
+        String expected = getExpected(pathExpectedFile);
+        String actual = Differ.generate(pathFile1, pathFile2,"stylish");
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    void testGenerateYmlDiff() throws Exception {
+        String pathFile1 = "src/test/resources/fixtures/file11.yml";
+        String pathFile2 = "src/test/resources/fixtures/file12.yml";
+        String pathExpectedFile = "src/test/resources/expected/stylish_file_11_12.txt";
+
+        String expected = getExpected(pathExpectedFile);
+        String actual = Differ.generate(pathFile1, pathFile2,"stylish");
         assertThat(actual).isEqualTo(expected);
     }
 }
