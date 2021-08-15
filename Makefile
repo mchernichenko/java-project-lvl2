@@ -11,7 +11,7 @@ test:
 	./gradlew test
 
 run:
-	./build/install/app/bin/app build/resources/main/fixtures/file11.json build/resources/main/fixtures/file12.json -f stylish
+	./build/install/app/bin/app build/resources/main/fixtures/file11.json build/resources/main/fixtures/file12.json -f plain
 
 runh:
 	./build/install/app/bin/app -h
