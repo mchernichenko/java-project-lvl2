@@ -20,7 +20,7 @@ public class DifferTest {
     }
 
     @Test
-    void testGenerateJsonDiff() throws Exception {
+    void testGenerateJsonDiffStylish() throws Exception {
         String pathFile1 = "src/test/resources/fixtures/file11.json";
         String pathFile2 = "src/test/resources/fixtures/file12.json";
         String pathExpectedFile = "src/test/resources/expected/stylish_file_11_12.txt";
@@ -31,13 +31,35 @@ public class DifferTest {
     }
 
     @Test
-    void testGenerateYmlDiff() throws Exception {
+    void testGenerateYmlDiffStylish() throws Exception {
         String pathFile1 = "src/test/resources/fixtures/file11.yml";
         String pathFile2 = "src/test/resources/fixtures/file12.yml";
         String pathExpectedFile = "src/test/resources/expected/stylish_file_11_12.txt";
 
         String expected = getExpected(pathExpectedFile);
         String actual = Differ.generate(pathFile1, pathFile2,"stylish");
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    void testGenerateJsonDiffSimpleStylish() throws Exception {
+        String pathFile1 = "src/test/resources/fixtures/file1.json";
+        String pathFile2 = "src/test/resources/fixtures/file2.json";
+        String pathExpectedFile = "src/test/resources/expected/stylish_file_1_2.txt";
+
+        String expected = getExpected(pathExpectedFile);
+        String actual = Differ.generate(pathFile1, pathFile2,"stylish");
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    void testGenerateJsonDiffPlain() throws Exception {
+        String pathFile1 = "src/test/resources/fixtures/file11.json";
+        String pathFile2 = "src/test/resources/fixtures/file12.json";
+        String pathExpectedFile = "src/test/resources/expected/plain_file_11_12.txt";
+
+        String expected = getExpected(pathExpectedFile);
+        String actual = Differ.generate(pathFile1, pathFile2,"plain");
         assertThat(actual).isEqualTo(expected);
     }
 }

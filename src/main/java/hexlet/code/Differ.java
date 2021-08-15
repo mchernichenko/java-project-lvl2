@@ -1,43 +1,53 @@
 package hexlet.code;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class Differ {
-    public static String generate(String filePath1, String filePath2, String format) throws IOException {
+    public static String generate(String filePath1, String filePath2, String formatName) throws IOException {
         Map<String, Object> dataFile1 = Parser.parser(filePath1);
         Map<String, Object> dataFile2 = Parser.parser(filePath2);
-        Map<String, String> mapDiff = genDiff(dataFile1, dataFile2);
-        return Formatter.format(mapDiff, dataFile1, dataFile2, format);
+        Set<DifferenceInfo> differenceInfoSet = genDiff(dataFile1, dataFile2);
+        return Formatter.format(differenceInfoSet, formatName);
     }
 
-    private static Map<String,String> genDiff(Map<String, Object> data1, Map<String, Object> data2) {
+    private static Set<DifferenceInfo> genDiff(Map<String, Object> data1, Map<String, Object> data2) {
         Set<String> intersectKeys = data1.keySet().stream()
                 .filter(data2::containsKey)
                 .collect(Collectors.toSet());
 
-        Map<String, String> addMap = data2.keySet().stream()
+        Set<DifferenceInfo> addSet = data2.keySet().stream()
                 .filter(x -> !intersectKeys.contains(x))
-                .collect(Collectors.toMap(x -> x, y -> "added"));
+                .map(x -> new DifferenceInfo(x, null, data2.get(x), DifferenceInfo.ChangeStatus.ADDED))
+                .collect(Collectors.toSet());
 
-        Map<String, String> delMap = data1.keySet().stream()
+        Set<DifferenceInfo> delSet = data1.keySet().stream()
                 .filter(x -> !intersectKeys.contains(x))
-                .collect(Collectors.toMap(x -> x, y -> "deleted"));
+                .map(x -> new DifferenceInfo(x, data1.get(x), null, DifferenceInfo.ChangeStatus.DELETED))
+                .collect(Collectors.toSet());
 
-        Map<String, String> diffMap = new TreeMap<>(addMap);
-        diffMap.putAll(delMap);
+        Set<DifferenceInfo> differenceInfoSet = new HashSet<>(addSet);
+        differenceInfoSet.addAll(delSet);
 
         for (String key : intersectKeys) {
             if (Objects.equals(data1.get(key), data2.get(key))) {
-                diffMap.put(key, "unchanged");
+                differenceInfoSet.add(new DifferenceInfo(
+                        key,
+                        data2.get(key),
+                        data2.get(key),
+                        DifferenceInfo.ChangeStatus.UNCHANGED));
             } else {
-                diffMap.put(key, "changed");
+                differenceInfoSet.add(new DifferenceInfo(
+                        key,
+                        data1.get(key),
+                        data2.get(key),
+                        DifferenceInfo.ChangeStatus.CHANGED));
             }
         }
-        return diffMap;
+        return differenceInfoSet;
     }
 }

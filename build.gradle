@@ -4,7 +4,7 @@ plugins {
     // проверка наличия новых версий библиотек и плагинов используемых в проекте ./gradlew dependencyUpdates
     id 'com.github.ben-manes.versions' version '0.38.0'
     id 'checkstyle'
- //   id 'io.freefair.lombok' version '5.3.0'
+    id "io.freefair.lombok" version "6.1.0"
     id 'jacoco'
     id 'com.adarshr.test-logger' version '3.0.0'
 }
@@ -30,6 +30,9 @@ dependencies {
     // json+yml
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.4'
+
+    // code generation (use plugin)
+    // implementation 'org.projectlombok:lombok:1.18.20'
 }
 
 // целевая версия Java под которую компилируется проект
