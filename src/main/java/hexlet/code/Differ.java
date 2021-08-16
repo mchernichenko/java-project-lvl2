@@ -8,6 +8,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static hexlet.code.Formatter.Format.STYLISH;
+
 public class Differ {
     public static String generate(String filePath1, String filePath2, String formatName) throws IOException {
         Map<String, Object> dataFile1 = Parser.parser(filePath1);
@@ -15,6 +17,10 @@ public class Differ {
         Set<DifferenceInfo> differenceInfoSet = genDiff(dataFile1, dataFile2);
         return Formatter.format(differenceInfoSet,
                 Enum.valueOf(Formatter.Format.class, formatName.toUpperCase(Locale.ROOT)));
+    }
+
+    public static String generate(String filePath1, String filePath2) throws IOException {
+        return generate(filePath1, filePath2, STYLISH.toString());
     }
 
     private static Set<DifferenceInfo> genDiff(Map<String, Object> data1, Map<String, Object> data2) {
