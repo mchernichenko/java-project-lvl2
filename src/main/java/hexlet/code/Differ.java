@@ -19,6 +19,7 @@ public class Differ {
                 Enum.valueOf(Formatter.Format.class, formatName.toUpperCase(Locale.ROOT)));
     }
 
+    // Метод для использования диффер`а как библиотечного со стилизацией по-умолчанию
     public static String generate(String filePath1, String filePath2) throws IOException {
         return generate(filePath1, filePath2, STYLISH.toString());
     }
