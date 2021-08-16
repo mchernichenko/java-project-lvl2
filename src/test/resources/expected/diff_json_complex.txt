@@ -1,0 +1,19 @@
+{
+  "diffs": [
+    {"key":"chars1","oldValue":["a","b","c"],"newValue":["a","b","c"],"changeStatus":"UNCHANGED"},
+    {"key":"chars2","oldValue":["d","e","f"],"newValue":false,"changeStatus":"CHANGED"},
+    {"key":"checked","oldValue":false,"newValue":true,"changeStatus":"CHANGED"},
+    {"key":"default","oldValue":null,"newValue":["value1","value2"],"changeStatus":"CHANGED"},
+    {"key":"id","oldValue":45,"newValue":null,"changeStatus":"CHANGED"},
+    {"key":"key1","oldValue":"value1","newValue":null,"changeStatus":"DELETED"},
+    {"key":"key2","oldValue":null,"newValue":"value2","changeStatus":"ADDED"},
+    {"key":"numbers1","oldValue":[1,2,3,4],"newValue":[1,2,3,4],"changeStatus":"UNCHANGED"},
+    {"key":"numbers2","oldValue":[2,3,4,5],"newValue":[22,33,44,55],"changeStatus":"CHANGED"},
+    {"key":"numbers3","oldValue":[3,4,5],"newValue":null,"changeStatus":"DELETED"},
+    {"key":"numbers4","oldValue":null,"newValue":[4,5,6],"changeStatus":"ADDED"},
+    {"key":"obj1","oldValue":null,"newValue":{"nestedKey":"value","isNested":true},"changeStatus":"ADDED"},
+    {"key":"setting1","oldValue":"Some value","newValue":"Another value","changeStatus":"CHANGED"},
+    {"key":"setting2","oldValue":200,"newValue":300,"changeStatus":"CHANGED"},
+    {"key":"setting3","oldValue":true,"newValue":"none","changeStatus":"CHANGED"},
+  ]
+}

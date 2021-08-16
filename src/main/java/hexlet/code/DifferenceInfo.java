@@ -9,9 +9,9 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class DifferenceInfo {
-    private String key;  // unique
+    private String key;      // unique
     private Object oldValue; // null if added
-    private Object newValue;  // null if deleted
+    private Object newValue; // null if deleted
     private ChangeStatus changeStatus;
 
     public enum ChangeStatus {

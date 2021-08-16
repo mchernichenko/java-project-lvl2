@@ -8,6 +8,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
 
+import static hexlet.code.Formatter.Format.STYLISH;
+import static hexlet.code.Formatter.Format.PLAIN;
+import static hexlet.code.Formatter.Format.JSON;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DifferTest {
@@ -20,43 +23,57 @@ public class DifferTest {
     }
 
     @Test
-    void testGenerateJsonDiffStylish() throws Exception {
-        String pathFile1 = "src/test/resources/fixtures/file11.json";
-        String pathFile2 = "src/test/resources/fixtures/file12.json";
-        String pathExpectedFile = "src/test/resources/expected/stylish_file_11_12.txt";
+    void testGenerateStylishDiffFromSimpleJson() throws Exception {
+        String pathFile1 = "src/test/resources/fixtures/file1_simple.json";
+        String pathFile2 = "src/test/resources/fixtures/file2_simple.json";
+        String pathExpectedFile = "src/test/resources/expected/diff_stylish_simple.txt";
+
         String expected = getExpected(pathExpectedFile);
-        String actual = Differ.generate(pathFile1, pathFile2, "stylish");
+        String actual = Differ.generate(pathFile1, pathFile2, STYLISH);
         assertThat(actual).isEqualTo(expected);
     }
 
     @Test
-    void testGenerateYmlDiffStylish() throws Exception {
-        String pathFile1 = "src/test/resources/fixtures/file11.yml";
-        String pathFile2 = "src/test/resources/fixtures/file12.yml";
-        String pathExpectedFile = "src/test/resources/expected/stylish_file_11_12.txt";
+    void testGenerateStylishDiffFromJson() throws Exception {
+        String pathFile1 = "src/test/resources/fixtures/file1_complex.json";
+        String pathFile2 = "src/test/resources/fixtures/file2_complex.json";
+        String pathExpectedFile = "src/test/resources/expected/diff_stylish_complex.txt";
+
         String expected = getExpected(pathExpectedFile);
-        String actual = Differ.generate(pathFile1, pathFile2, "stylish");
+        String actual = Differ.generate(pathFile1, pathFile2, STYLISH);
         assertThat(actual).isEqualTo(expected);
     }
 
     @Test
-    void testGenerateJsonDiffSimpleStylish() throws Exception {
-        String pathFile1 = "src/test/resources/fixtures/file1.json";
-        String pathFile2 = "src/test/resources/fixtures/file2.json";
-        String pathExpectedFile = "src/test/resources/expected/stylish_file_1_2.txt";
+    void testGenerateStylishDiffFromYml() throws Exception {
+        String pathFile1 = "src/test/resources/fixtures/file1_complex.yml";
+        String pathFile2 = "src/test/resources/fixtures/file2_complex.yml";
+        String pathExpectedFile = "src/test/resources/expected/diff_stylish_complex.txt";
+
         String expected = getExpected(pathExpectedFile);
-        String actual = Differ.generate(pathFile1, pathFile2, "stylish");
+        String actual = Differ.generate(pathFile1, pathFile2, STYLISH);
         assertThat(actual).isEqualTo(expected);
     }
 
     @Test
-    void testGenerateJsonDiffPlain() throws Exception {
-        String pathFile1 = "src/test/resources/fixtures/file11.json";
-        String pathFile2 = "src/test/resources/fixtures/file12.json";
-        String pathExpectedFile = "src/test/resources/expected/plain_file_11_12.txt";
+    void testGeneratePlainDiffFromJson() throws Exception {
+        String pathFile1 = "src/test/resources/fixtures/file1_complex.json";
+        String pathFile2 = "src/test/resources/fixtures/file2_complex.json";
+        String pathExpectedFile = "src/test/resources/expected/diff_plain_complex.txt";
 
         String expected = getExpected(pathExpectedFile);
-        String actual = Differ.generate(pathFile1, pathFile2, "plain");
+        String actual = Differ.generate(pathFile1, pathFile2, PLAIN);
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    void testGenerateJsonDiffFromJson() throws Exception {
+        String pathFile1 = "src/test/resources/fixtures/file1_complex.json";
+        String pathFile2 = "src/test/resources/fixtures/file2_complex.json";
+        String pathExpectedFile = "src/test/resources/expected/diff_json_complex.txt";
+
+        String expected = getExpected(pathExpectedFile);
+        String actual = Differ.generate(pathFile1, pathFile2, JSON);
         assertThat(actual).isEqualTo(expected);
     }
 }

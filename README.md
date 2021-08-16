@@ -5,4 +5,4 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/405bf18064afe206b28f/test_coverage)](https://codeclimate.com/github/mchernichenko/java-project-lvl2/test_coverage)
 
 ## Demo of the project:
-[![asciicast](https://asciinema.org/a/427895.svg)](https://asciinema.org/a/427895)
+[![asciicast](https://asciinema.org/a/430708.svg)](https://asciinema.org/a/430708)

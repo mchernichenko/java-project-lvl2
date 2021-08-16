@@ -11,10 +11,7 @@ test:
 	./gradlew test
 
 run:
-	./build/install/app/bin/app build/resources/main/fixtures/file11.json build/resources/main/fixtures/file12.json -f plain
-
-runh:
-	./build/install/app/bin/app -h
+	./build/install/app/bin/app build/resources/main/fixtures/file_complex.json build/resources/main/fixtures/file_complex.json
 
 check-updates:
 	./gradlew dependencyUpdates
@@ -24,6 +21,3 @@ lint:
 
 build:
 	./gradlew build
-
-#./build/install/app/bin/app build/resources/main/fixtures/file1.yml build/resources/main/fixtures/file2.yml -f yml
-#./build/install/app/bin/app build/resources/main/fixtures/file1.json build/resources/main/fixtures/file2.json -f json

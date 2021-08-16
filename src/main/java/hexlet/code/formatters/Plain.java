@@ -9,9 +9,10 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class Plain {
+    private static final Comparator<DifferenceInfo> KEY_ORDER = Comparator.comparing(DifferenceInfo::getKey);
 
     public static String format(Set<DifferenceInfo> differenceInfoSet) {
-        TreeSet<DifferenceInfo> differenceInfoTreeSet = new TreeSet<>(Comparator.comparing(DifferenceInfo::getKey));
+        TreeSet<DifferenceInfo> differenceInfoTreeSet = new TreeSet<>(KEY_ORDER);
         differenceInfoTreeSet.addAll(differenceInfoSet);
         StringBuilder result = new StringBuilder();
         for (DifferenceInfo item : differenceInfoTreeSet) {
@@ -27,7 +28,7 @@ public class Plain {
                                 objectToString(item.getOldValue()),
                                 objectToString(item.getNewValue())))
                         .append("\n");
-                default -> {
+                default -> { // объекты в прочих статусах не имеют представления при выводе на печать
                 }
             }
         }
@@ -35,9 +36,9 @@ public class Plain {
     }
 
     /**
-     * Замена составного объекта.
+     * Замена представления составного объекта.
      * @param object
-     * @return Если object является составным (объект или массив), то заменяем его на [complex value]
+     * @return Если object является составным (объект или массив), то заменяем его на строковый объект "[complex value]"
      */
     private static Object objectToString(Object object) {
         return object instanceof Object[] || object instanceof Collection || object instanceof Map

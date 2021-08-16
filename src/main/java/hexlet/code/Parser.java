@@ -10,13 +10,17 @@ import java.nio.file.Paths;
 import java.util.Map;
 
 public class Parser {
+
+    private static final ObjectMapper MAPPER = new ObjectMapper();
+    private static final ObjectMapper YAML_MAPPER = new ObjectMapper(new YAMLFactory());
+
     public static Map<String, Object> parser(String filePath) throws IOException {
         Path path = Paths.get(filePath);
         if (filePath.endsWith("json")) {
-            return new ObjectMapper().readValue(path.toFile(), new TypeReference<>() {
+            return MAPPER.readValue(path.toFile(), new TypeReference<>() {
             });
         } else {
-            return new ObjectMapper(new YAMLFactory()).readValue(path.toFile(), new TypeReference<>() {
+            return YAML_MAPPER.readValue(path.toFile(), new TypeReference<>() {
             });
         }
     }

@@ -25,7 +25,7 @@ public class Stylish {
                         .append(item.getOldValue()).append("\n")
                         .append(INDENT).append("+ ").append(item.getKey()).append(": ")
                         .append(item.getNewValue()).append("\n");
-                default -> {
+                default -> { // объекты в прочих статусах не имеют представления при выводе на печать
                 }
             }
         }

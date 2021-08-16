@@ -18,9 +18,9 @@ public class App implements Callable<String> {
     private String filePath2;
 
     @Option(names = {"-f", "--format"},
-            defaultValue = "stylish",
-            description = "output format [default: ${DEFAULT-VALUE}]")
-    private String format;
+            defaultValue = "STYLISH",
+            description = "output format. Valid values: [${COMPLETION-CANDIDATES}] [default: ${DEFAULT-VALUE}]")
+    private Formatter.Format format;
 
     /**
      * Сравнение плоских json.
