@@ -17,10 +17,15 @@ public class App implements Callable<String> {
     @Parameters(description = "path to second file", paramLabel = "filepath2")
     private String filePath2;
 
-    @Option(names = {"-f", "--format"},
+/*    @Option(names = {"-f", "--format"},
             defaultValue = "STYLISH",
             description = "output format. Valid values: [${COMPLETION-CANDIDATES}] [default: ${DEFAULT-VALUE}]")
-    private Formatter.Format format;
+    private Formatter.Format format;*/
+
+    @Option(names = {"-f", "--format"},
+            defaultValue = "stylish",
+            description = "output format. [default: ${DEFAULT-VALUE}]")
+    private String format;
 
     /**
      * Сравнение плоских json.
@@ -29,7 +34,7 @@ public class App implements Callable<String> {
      */
     @Override
     public String call() throws Exception { // your business logic goes here...
-        return Differ.generate(filePath1, filePath2, format.toString());
+        return Differ.generate(filePath1, filePath2, format);
     }
 
     public static void main(String[] args) {
