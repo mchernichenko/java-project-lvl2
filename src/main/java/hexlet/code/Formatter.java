@@ -18,18 +18,11 @@ public class Formatter {
     }
 
     public enum Format {
-        STYLISH("stylish"),
-        PLAIN("plain"),
-        JSON("json");
-
-        private final String abbreviation;
+        STYLISH("STYLISH"),
+        PLAIN("PLAIN"),
+        JSON("JSON");
 
         Format(String abbreviation) {
-            this.abbreviation = abbreviation;
-        }
-
-        public String getAbbreviation() {
-            return abbreviation;
         }
     }
 }
