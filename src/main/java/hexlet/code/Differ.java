@@ -8,11 +8,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Differ {
-    public static String generate(String filePath1, String filePath2, Formatter.Format formatName) throws IOException {
+    public static String generate(String filePath1, String filePath2, String formatName) throws IOException {
         Map<String, Object> dataFile1 = Parser.parser(filePath1);
         Map<String, Object> dataFile2 = Parser.parser(filePath2);
         Set<DifferenceInfo> differenceInfoSet = genDiff(dataFile1, dataFile2);
-        return Formatter.format(differenceInfoSet, formatName);
+        return Formatter.format(differenceInfoSet, Enum.valueOf(Formatter.Format.class, formatName));
     }
 
     private static Set<DifferenceInfo> genDiff(Map<String, Object> data1, Map<String, Object> data2) {

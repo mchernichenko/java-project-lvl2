@@ -29,7 +29,7 @@ public class DifferTest {
         String pathExpectedFile = "src/test/resources/expected/diff_stylish_simple.txt";
 
         String expected = getExpected(pathExpectedFile);
-        String actual = Differ.generate(pathFile1, pathFile2, STYLISH);
+        String actual = Differ.generate(pathFile1, pathFile2, STYLISH.toString());
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -40,7 +40,7 @@ public class DifferTest {
         String pathExpectedFile = "src/test/resources/expected/diff_stylish_complex.txt";
 
         String expected = getExpected(pathExpectedFile);
-        String actual = Differ.generate(pathFile1, pathFile2, STYLISH);
+        String actual = Differ.generate(pathFile1, pathFile2, STYLISH.toString());
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -51,7 +51,7 @@ public class DifferTest {
         String pathExpectedFile = "src/test/resources/expected/diff_stylish_complex.txt";
 
         String expected = getExpected(pathExpectedFile);
-        String actual = Differ.generate(pathFile1, pathFile2, STYLISH);
+        String actual = Differ.generate(pathFile1, pathFile2, STYLISH.toString());
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -62,7 +62,7 @@ public class DifferTest {
         String pathExpectedFile = "src/test/resources/expected/diff_plain_complex.txt";
 
         String expected = getExpected(pathExpectedFile);
-        String actual = Differ.generate(pathFile1, pathFile2, PLAIN);
+        String actual = Differ.generate(pathFile1, pathFile2, PLAIN.toString());
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -73,7 +73,7 @@ public class DifferTest {
         String pathExpectedFile = "src/test/resources/expected/diff_json_complex.txt";
 
         String expected = getExpected(pathExpectedFile);
-        String actual = Differ.generate(pathFile1, pathFile2, JSON);
+        String actual = Differ.generate(pathFile1, pathFile2, JSON.toString());
         assertThat(actual).isEqualTo(expected);
     }
 }
