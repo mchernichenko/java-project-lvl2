@@ -35,6 +35,7 @@ public class DifferTest {
 
     @Test
     void testGenerateStylishDiffFromJson() throws Exception {
+        // для прохождения hexlet тестов имена файлов должны быть file1.json и file2.json
         String pathFile1 = "src/test/resources/fixtures/file1_complex.json";
         String pathFile2 = "src/test/resources/fixtures/file2_complex.json";
         String pathExpectedFile = "src/test/resources/expected/diff_stylish_complex.txt";
@@ -46,6 +47,7 @@ public class DifferTest {
 
     @Test
     void testGenerateStylishDiffFromYml() throws Exception {
+        // для прохождения hexlet тестов имена файлов должны быть file1.yml и file2.yml
         String pathFile1 = "src/test/resources/fixtures/file1_complex.yml";
         String pathFile2 = "src/test/resources/fixtures/file2_complex.yml";
         String pathExpectedFile = "src/test/resources/expected/diff_stylish_complex.txt";
