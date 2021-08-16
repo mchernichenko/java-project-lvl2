@@ -8,7 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
 
-import static hexlet.code.Formatter.Format.STYLISH;
+//import static hexlet.code.Formatter.Format.STYLISH;
 import static hexlet.code.Formatter.Format.PLAIN;
 import static hexlet.code.Formatter.Format.JSON;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -29,7 +29,7 @@ public class DifferTest {
         String pathExpectedFile = "src/test/resources/expected/diff_stylish_simple.txt";
 
         String expected = getExpected(pathExpectedFile);
-        String actual = Differ.generate(pathFile1, pathFile2, STYLISH.toString());
+        String actual = Differ.generate(pathFile1, pathFile2, "stylish");
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -40,7 +40,7 @@ public class DifferTest {
         String pathExpectedFile = "src/test/resources/expected/diff_stylish_complex.txt";
 
         String expected = getExpected(pathExpectedFile);
-        String actual = Differ.generate(pathFile1, pathFile2, STYLISH.toString());
+        String actual = Differ.generate(pathFile1, pathFile2, "stylish");
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -51,7 +51,7 @@ public class DifferTest {
         String pathExpectedFile = "src/test/resources/expected/diff_stylish_complex.txt";
 
         String expected = getExpected(pathExpectedFile);
-        String actual = Differ.generate(pathFile1, pathFile2, STYLISH.toString());
+        String actual = Differ.generate(pathFile1, pathFile2, "stylish");
         assertThat(actual).isEqualTo(expected);
     }
 
