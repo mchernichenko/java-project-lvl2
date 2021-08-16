@@ -11,7 +11,7 @@ test:
 	./gradlew test
 
 run:
-	./build/install/app/bin/app build/resources/main/fixtures/file_complex.json build/resources/main/fixtures/file_complex.json
+	./build/install/app/bin/app build/resources/main/fixtures/file1_complex.json build/resources/main/fixtures/file2_complex.json
 
 check-updates:
 	./gradlew dependencyUpdates
