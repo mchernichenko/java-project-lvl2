@@ -23,4 +23,3 @@
   - setting3: true
   + setting3: none
 }
-
