@@ -17,3 +17,4 @@
     {"key":"setting3","oldValue":true,"newValue":"none","changeStatus":"CHANGED"},
   ]
 }
+
