@@ -21,7 +21,7 @@ public class Differ {
 
     // Метод для использования диффер`а как библиотечного со стилизацией по-умолчанию
     public static String generate(String filePath1, String filePath2) throws IOException {
-        return generate(filePath1, filePath2, STYLISH.toString()) + "\n";
+        return generate(filePath1, filePath2, STYLISH.toString());
     }
 
     private static Set<DifferenceInfo> genDiff(Map<String, Object> data1, Map<String, Object> data2) {
