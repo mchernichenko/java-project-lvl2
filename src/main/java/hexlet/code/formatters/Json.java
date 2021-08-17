@@ -25,6 +25,6 @@ public class Json {
                 e.printStackTrace();
             }
         }
-        return result.append(INDENT).append("]\n}\n").toString();
+        return result.append(INDENT).append("]\n}").toString();
     }
 }

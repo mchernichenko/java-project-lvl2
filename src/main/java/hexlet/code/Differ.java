@@ -16,7 +16,7 @@ public class Differ {
         Map<String, Object> dataFile2 = Parser.parser(filePath2);
         Set<DifferenceInfo> differenceInfoSet = genDiff(dataFile1, dataFile2);
         return Formatter.format(differenceInfoSet,
-                Enum.valueOf(Formatter.Format.class, formatName.toUpperCase(Locale.ROOT)));
+                Enum.valueOf(Formatter.Format.class, formatName.toUpperCase(Locale.ROOT))) + "\n";
     }
 
     // Метод для использования диффер`а как библиотечного со стилизацией по-умолчанию
