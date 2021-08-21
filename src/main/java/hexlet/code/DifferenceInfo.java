@@ -10,8 +10,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class DifferenceInfo {
     private String key;      // unique
-    private Object oldValue; // null if added
-    private Object newValue; // null if deleted
+    private Object oldValue;
+    private Object newValue;
     private ChangeStatus changeStatus;
 
     public enum ChangeStatus {

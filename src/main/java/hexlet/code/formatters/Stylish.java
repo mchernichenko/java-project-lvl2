@@ -29,6 +29,6 @@ public class Stylish {
                 }
             }
         }
-        return result.append("}").toString().trim();
+        return result.append("}").toString();
     }
 }
